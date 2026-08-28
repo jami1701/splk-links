@@ -194,6 +194,44 @@
 
     .primary-link:hover { background: transparent; color: var(--green-bright); transform: translateY(-2px); }
 
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--line);
+      gap: 0;
+      margin-bottom: 0;
+    }
+
+    .tab-button {
+      flex: 1;
+      padding: 20px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: color .2s ease, border-color .2s ease;
+      text-align: center;
+    }
+
+    .tab-button:hover {
+      color: var(--ink);
+    }
+
+    .tab-button.active {
+      color: var(--green-bright);
+      border-bottom-color: var(--green-bright);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
     .section-head {
       display: flex;
       align-items: end;
@@ -282,6 +320,15 @@
       text-transform: uppercase;
     }
 
+    .attribution {
+      display: block;
+      margin-top: auto;
+      padding-top: 16px;
+      color: var(--muted);
+      font-size: 11px;
+      border-top: 1px solid var(--line);
+    }
+
     footer {
       display: flex;
       justify-content: space-between;
@@ -300,6 +347,7 @@
       .section-head { align-items: start; flex-direction: column; }
       .section-head p { text-align: left; }
       .card, .card.wide { grid-column: span 6; }
+      .tab-button { font-size: 14px; padding: 16px; }
     }
 
     @media (max-width: 560px) {
@@ -309,6 +357,7 @@
       h1 { font-size: 48px; }
       .card, .card.wide { grid-column: 1 / -1; min-height: 230px; }
       footer { flex-direction: column; }
+      .tab-button { font-size: 13px; padding: 14px 8px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -332,68 +381,130 @@
       </aside>
     </section>
 
-    <section id="resources" aria-labelledby="resources-title">
-      <div class="section-head">
-        <h2 id="resources-title">Explore the ecosystem</h2>
-        <p>Choose a destination. Every link opens in a new tab, so this hub stays ready for your next move.</p>
-      </div>
+    <div class="tabs">
+      <button class="tab-button active" data-tab="official-resources">Official Resources</button>
+      <button class="tab-button" data-tab="community-links">Community Provided Useful Links</button>
+    </div>
 
-      <div class="grid">
-        <a class="card wide" style="--accent:#8bd450" href="https://community.splunk.com/" target="_blank" rel="noopener noreferrer">
-          <div class="card-top"><span class="index">01 / COMMUNITY</span><span class="arrow" aria-hidden="true"></span></div>
-          <h3>Splunk Community</h3>
-          <p>Ask questions, share solutions and learn from practitioners across the global Splunk community.</p>
-          <span class="tag">Discuss and solve</span>
-        </a>
+    <div id="official-resources" class="tab-content active">
+      <section id="resources" aria-labelledby="resources-title">
+        <div class="section-head">
+          <h2 id="resources-title">Explore the ecosystem</h2>
+          <p>Choose a destination. Every link opens in a new tab, so this hub stays ready for your next move.</p>
+        </div>
 
-        <a class="card" style="--accent:#57a9e3" href="https://help.splunk.com/en" target="_blank" rel="noopener noreferrer">
-          <div class="card-top"><span class="index">02 / DOCS</span><span class="arrow" aria-hidden="true"></span></div>
-          <h3>Splunk Help</h3>
-          <p>Find product documentation, guidance and technical reference.</p>
-          <span class="tag">Learn and troubleshoot</span>
-        </a>
+        <div class="grid">
+          <a class="card wide" style="--accent:#8bd450" href="https://community.splunk.com/" target="_blank" rel="noopener noreferrer">
+            <div class="card-top"><span class="index">01 / COMMUNITY</span><span class="arrow" aria-hidden="true"></span></div>
+            <h3>Splunk Community</h3>
+            <p>Ask questions, share solutions and learn from practitioners across the global Splunk community.</p>
+            <span class="tag">Discuss and solve</span>
+          </a>
 
-        <a class="card" style="--accent:#ae8de8" href="https://splunkbase.splunk.com/" target="_blank" rel="noopener noreferrer">
-          <div class="card-top"><span class="index">03 / APPS</span><span class="arrow" aria-hidden="true"></span></div>
-          <h3>Splunkbase</h3>
-          <p>Discover apps and add-ons that extend what your Splunk platform can do.</p>
-          <span class="tag">Extend the platform</span>
-        </a>
+          <a class="card" style="--accent:#57a9e3" href="https://help.splunk.com/en" target="_blank" rel="noopener noreferrer">
+            <div class="card-top"><span class="index">02 / DOCS</span><span class="arrow" aria-hidden="true"></span></div>
+            <h3>Splunk Help</h3>
+            <p>Find product documentation, guidance and technical reference.</p>
+            <span class="tag">Learn and troubleshoot</span>
+          </a>
 
-        <a class="card wide" style="--accent:#e9b949" href="https://dev.splunk.com/" target="_blank" rel="noopener noreferrer">
-          <div class="card-top"><span class="index">04 / DEVELOP</span><span class="arrow" aria-hidden="true"></span></div>
-          <h3>Splunk Developer</h3>
-          <p>Build integrations, applications and experiences with Splunk APIs, SDKs and developer tools.</p>
-          <span class="tag">Build and integrate</span>
-        </a>
+          <a class="card" style="--accent:#ae8de8" href="https://splunkbase.splunk.com/" target="_blank" rel="noopener noreferrer">
+            <div class="card-top"><span class="index">03 / APPS</span><span class="arrow" aria-hidden="true"></span></div>
+            <h3>Splunkbase</h3>
+            <p>Discover apps and add-ons that extend what your Splunk platform can do.</p>
+            <span class="tag">Extend the platform</span>
+          </a>
 
-        <a class="card" style="--accent:#e77267" href="https://ideas.splunk.com/" target="_blank" rel="noopener noreferrer">
-          <div class="card-top"><span class="index">05 / IDEAS</span><span class="arrow" aria-hidden="true"></span></div>
-          <h3>Splunk Ideas</h3>
-          <p>Suggest product improvements and support the ideas that matter to you.</p>
-          <span class="tag">Influence the roadmap</span>
-        </a>
+          <a class="card wide" style="--accent:#e9b949" href="https://dev.splunk.com/" target="_blank" rel="noopener noreferrer">
+            <div class="card-top"><span class="index">04 / DEVELOP</span><span class="arrow" aria-hidden="true"></span></div>
+            <h3>Splunk Developer</h3>
+            <p>Build integrations, applications and experiences with Splunk APIs, SDKs and developer tools.</p>
+            <span class="tag">Build and integrate</span>
+          </a>
 
-        <a class="card" style="--accent:#57a9e3" href="https://voc.splunk.com/" target="_blank" rel="noopener noreferrer">
-          <div class="card-top"><span class="index">06 / FEEDBACK</span><span class="arrow" aria-hidden="true"></span></div>
-          <h3>Voice of the Customer</h3>
-          <p>Take part in research and help shape future Splunk experiences.</p>
-          <span class="tag">Share your perspective</span>
-        </a>
+          <a class="card" style="--accent:#e77267" href="https://ideas.splunk.com/" target="_blank" rel="noopener noreferrer">
+            <div class="card-top"><span class="index">05 / IDEAS</span><span class="arrow" aria-hidden="true"></span></div>
+            <h3>Splunk Ideas</h3>
+            <p>Suggest product improvements and support the ideas that matter to you.</p>
+            <span class="tag">Influence the roadmap</span>
+          </a>
 
-        <a class="card" style="--accent:#8bd450" href="https://usergroups.splunk.com/uk-central-government-splunk-user-group/" target="_blank" rel="noopener noreferrer">
-          <div class="card-top"><span class="index">07 / USER GROUP</span><span class="arrow" aria-hidden="true"></span></div>
-          <h3>UK Central Government</h3>
-          <p>Meet peers, exchange practical knowledge and keep up with upcoming group activity.</p>
-          <span class="tag">Connect locally</span>
-        </a>
-      </div>
-    </section>
+          <a class="card" style="--accent:#57a9e3" href="https://voc.splunk.com/" target="_blank" rel="noopener noreferrer">
+            <div class="card-top"><span class="index">06 / FEEDBACK</span><span class="arrow" aria-hidden="true"></span></div>
+            <h3>Voice of the Customer</h3>
+            <p>Take part in research and help shape future Splunk experiences.</p>
+            <span class="tag">Share your perspective</span>
+          </a>
+
+          <a class="card" style="--accent:#8bd450" href="https://usergroups.splunk.com/uk-central-government-splunk-user-group/" target="_blank" rel="noopener noreferrer">
+            <div class="card-top"><span class="index">07 / USER GROUP</span><span class="arrow" aria-hidden="true"></span></div>
+            <h3>UK Central Government</h3>
+            <p>Meet peers, exchange practical knowledge and keep up with upcoming group activity.</p>
+            <span class="tag">Connect locally</span>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <div id="community-links" class="tab-content">
+      <section id="community-resources" aria-labelledby="community-title">
+        <div class="section-head">
+          <h2 id="community-title">Community Provided Useful Links</h2>
+          <p>Curated links shared by the Splunk community.</p>
+        </div>
+
+        <div class="grid">
+          <a class="card" style="--accent:#8bd450" href="https://github.com/paychex/splunk-python" target="_blank" rel="noopener noreferrer">
+            <div class="card-top"><span class="index">01 / SDK</span><span class="arrow" aria-hidden="true"></span></div>
+            <h3>Paychex Splunk Python</h3>
+            <p>Python SDK for Splunk integration and automation.</p>
+            <span class="attribution">Contributed by Will Wilson</span>
+          </a>
+
+          <a class="card" style="--accent:#57a9e3" href="https://github.com/mercedes-benz/ansible-for-splunk-cloud" target="_blank" rel="noopener noreferrer">
+            <div class="card-top"><span class="index">02 / AUTOMATION</span><span class="arrow" aria-hidden="true"></span></div>
+            <h3>Ansible for Splunk Cloud</h3>
+            <p>Ansible playbooks and modules for Splunk Cloud deployment and configuration.</p>
+            <span class="attribution">Contributed by Will Wilson</span>
+          </a>
+
+          <a class="card" style="--accent:#ae8de8" href="https://splunkbase.splunk.com/app/6731" target="_blank" rel="noopener noreferrer">
+            <div class="card-top"><span class="index">03 / APP</span><span class="arrow" aria-hidden="true"></span></div>
+            <h3>Splunkbase App 6731</h3>
+            <p>Community-contributed app available on Splunkbase.</p>
+            <span class="attribution">Contributed by Will Wilson</span>
+          </a>
+
+          <a class="card" style="--accent:#e9b949" href="https://help.splunk.com/en/splunk-cloud-platform/administer/admin-config-service-manual/10.5.2605/welcome-to-the-admin-config-service-acs/about-the-admin-config-service-acs-api" target="_blank" rel="noopener noreferrer">
+            <div class="card-top"><span class="index">04 / DOCS</span><span class="arrow" aria-hidden="true"></span></div>
+            <h3>Admin Config Service API</h3>
+            <p>Documentation for the Splunk Cloud Admin Config Service API.</p>
+            <span class="attribution">Contributed by Will Wilson</span>
+          </a>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer class="shell">
     <span>Curated Splunk links page</span>
     <span>Independent resource page. Splunk is a trademark of Splunk Inc.</span>
   </footer>
+
+  <script>
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const tabName = button.getAttribute('data-tab');
+        
+        // Remove active class from all buttons and content
+        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        
+        // Add active class to clicked button and corresponding content
+        button.classList.add('active');
+        document.getElementById(tabName).classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
